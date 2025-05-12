@@ -19,7 +19,11 @@ function App() {
    * The Start button will turn into the Stop button after it has been click and while the time is not 00:00
    * The reset button will be to the right of the Start / Stop button
    * */
-  return <Timer />;
+  return (
+    <main className="w-dvw h-dvh flex justify-center items-center">
+      <Timer />
+    </main>
+  );
 }
 
 export default App;
