@@ -14,6 +14,7 @@ export default function Timer() {
    */
 
   const [time, setTime] = useState<TimeFormat>("00:00");
+  const [isRunning, setIsRunning] = useState(false);
 
   return (
     <div className='flex flex-col items-center justify-center w-full h-full'>
@@ -23,8 +24,8 @@ export default function Timer() {
       >
         <Time time={time} />
         <div className='flex gap-4 mt-4'>
-          <Button />
-          <Button />
+          <Button action={isRunning ? "stop" : "start"} variant='primary' />
+          <Button action='reset' variant='secondary' />
         </div>
       </div>
     </div>
