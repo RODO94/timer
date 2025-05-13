@@ -1,4 +1,6 @@
-import Button from "./shared/Button";
+import { memo } from "react";
+
+import { Button } from "./shared/Button";
 
 interface ActionsProps {
   isRunning: boolean;
@@ -6,8 +8,7 @@ interface ActionsProps {
   onStop: () => void;
   onReset: () => void;
 }
-
-export default function Actions({
+function ActionsComponent({
   isRunning,
   onStart,
   onStop,
@@ -22,7 +23,7 @@ export default function Actions({
   };
 
   return (
-    <div className='flex justify-center gap-24 mt-4 w-full'>
+    <div className='flex justify-center gap-10 md:gap-24 mt-4 w-full'>
       <Button action='reset' variant='secondary' onClick={onReset} />
       <Button
         action={isRunning ? "stop" : "start"}
@@ -33,3 +34,5 @@ export default function Actions({
   );
   return <></>;
 }
+
+export const Actions = memo(ActionsComponent);

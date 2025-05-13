@@ -65,7 +65,7 @@ export default function Time({
           handleTimeChange={handleTimeChange}
           variant='minutes'
         />{" "}
-        <h1 className='text-8xl'>:</h1>
+        <h1 className='text-3xl md:text-8xl'>:</h1>
         <TimeDisplay
           time={time.seconds}
           handleTimeChange={handleTimeChange}

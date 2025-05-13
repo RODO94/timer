@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 
-import Actions from "./Actions";
+import { Actions } from "./Actions";
 import ProgressCircle from "./ProgressCircle";
 import Time from "./Time";
 
@@ -53,20 +53,20 @@ export default function Timer() {
     return () => clearInterval(intervalId);
   }, [convertTimeToSeconds, isRunning, time, timeElapsed]);
 
-  const handleStart = () => {
+  const handleStart = useCallback(() => {
     setIsRunning(true);
-  };
+  }, []);
 
-  const handleStop = () => {
+  const handleStop = useCallback(() => {
     setIsRunning(false);
-  };
+  }, []);
 
-  const handleReset = () => {
+  const handleReset = useCallback(() => {
     setIsRunning(false);
     setTime({ minutes: 0, seconds: 0 });
     setTimeElapsed(0);
     setProgress(0);
-  };
+  }, []);
 
   return (
     <section className='flex flex-col items-center gap-2 justify-center w-full h-full'>

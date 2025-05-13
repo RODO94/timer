@@ -22,7 +22,7 @@ export default function TimeDisplay({
       onClick={() => {
         setCanEdit(true);
       }}
-      className='text-9xl cursor-pointer'
+      className='text-4xl cursor-pointer md:text-9xl'
       role='button'
       aria-label={`Edit ${variant}`}
     >
