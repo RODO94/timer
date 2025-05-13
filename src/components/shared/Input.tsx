@@ -10,7 +10,7 @@ export default function Input({
   onBlur?: () => void;
 }) {
   return (
-    <div className='w-min min-w-[128px]'>
+    <div className='w-min min-w-[40px] md:min-w-[136px]'>
       <input
         id={name}
         name={name}
@@ -23,7 +23,7 @@ export default function Input({
         pattern='[0-9]{1,2}'
         aria-live='polite'
         aria-label={`${name} input`}
-        className='outline-none w-full text-9xl border-none bg-transparent'
+        className='outline-none w-full text-4xl border-none bg-transparent md:text-9xl'
       />
     </div>
   );
