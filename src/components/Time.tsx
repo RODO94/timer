@@ -22,20 +22,35 @@ export default function Time({
 
     const inputValue = e.target.value;
 
-    // Validate and constrain values
-    if (Number(inputValue) >= 60) {
-      setErrorMessage("Seconds must be less than 60");
-      return;
+    // Validate and constrain values based on the variant
+    if (variant === "seconds") {
+      if (Number(inputValue) >= 60) {
+        setErrorMessage("Seconds must be less than 60");
+        return;
+      }
+      if (Number(inputValue) < 0) {
+        setErrorMessage("Seconds must be greater than or equal to 0");
+        return;
+      }
+    } else if (variant === "minutes") {
+      if (Number(inputValue) > 999) { // Adjust the upper limit as needed
+        setErrorMessage("Minutes must be less than or equal to 999");
+        return;
+      }
+      if (Number(inputValue) < 0) {
+        setErrorMessage("Minutes must be greater than or equal to 0");
+        return;
+      }
     }
 
     // Allow incomplete input during editing
     if (isNaN(Number(inputValue))) {
-      setErrorMessage("Enter a valid number between 0 and 59");
+      setErrorMessage(
+        variant === "seconds"
+          ? "Enter a valid number between 0 and 59"
+          : "Enter a valid number between 0 and 999"
+      );
       return; // Let user continue typing
-    }
-    if (Number(inputValue) < 0) {
-      setErrorMessage("Seconds must be greater than or equal to 0");
-      return;
     }
 
     setTime({ ...time, [variant]: Number(inputValue) });
