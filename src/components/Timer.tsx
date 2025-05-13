@@ -9,12 +9,12 @@ export interface TimeStructure {
 }
 export default function Timer() {
   const [time, setTime] = useState<TimeStructure>({
-    minutes: 30,
-    seconds: 30,
+    minutes: 0,
+    seconds: 0,
   });
   const [timeElapsed, setTimeElapsed] = useState<number>(0);
   const [progress, setProgress] = useState(0);
-  const [isRunning, setIsRunning] = useState(true);
+  const [isRunning, setIsRunning] = useState(false);
 
   const progressGradient = useMemo(() => {
     const yellow = "#fffb00";
@@ -76,7 +76,7 @@ export default function Timer() {
           id='progress-inner-bar'
           className='w-[70vmin] h-[70vmin] bg-[#11099c] flex flex-col items-center justify-center rounded-full'
         >
-          <Time time={time} />
+          <Time time={time} setTime={setTime} />
           <div className='flex gap-4 mt-4'>
             <Button action={isRunning ? "stop" : "start"} variant='primary' />
             <Button action='reset' variant='secondary' />
