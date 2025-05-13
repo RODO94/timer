@@ -1,6 +1,5 @@
 import { useState } from "react";
 
-import Input from "./shared/Input";
 import TimeDisplay from "./shared/TimeDisplay";
 import { TimeStructure } from "./Timer";
 
@@ -13,9 +12,6 @@ export default function Time({
   time: TimeStructure;
   setTime: React.Dispatch<React.SetStateAction<TimeStructure>>;
 }) {
-  const [isEditingSeconds, setIsEditingSeconds] = useState<boolean>(false);
-  const [isEditingMinutes, setIsEditingMinutes] = useState<boolean>(false);
-
   const [errorMessage, setErrorMessage] = useState<string>("");
 
   const handleTimeChange = (
