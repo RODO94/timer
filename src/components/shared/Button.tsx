@@ -1,4 +1,10 @@
-export default function Button() {
+export default function Button({
+  action,
+  variant,
+}: {
+  action: "start" | "stop" | "reset";
+  variant: "primary" | "secondary";
+}) {
   /**
    * This component will be a shared button component
    * It will receive a variant prop to handle the styling of the button
@@ -11,5 +17,5 @@ export default function Button() {
    * - Stop
    * - Reset
    */
-  return <></>;
+  return <button>{`${action}.... ${variant}`}</button>;
 }

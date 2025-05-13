@@ -1,4 +1,6 @@
-export default function Time() {
+import { TimeStructure } from "./Timer";
+
+export default function Time({ time }: { time: TimeStructure }) {
   /**
    * This component will receive the time remaining from the Timer component
    * It will display the time in a visual format
