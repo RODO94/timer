@@ -10,10 +10,11 @@ export default function Input({
   onBlur?: () => void;
 }) {
   return (
-    <div className='w-min min-w-[54px]'>
+    <div className='w-min min-w-[128px]'>
       <input
         id={name}
         name={name}
+        autoFocus
         type='text'
         onChange={handleChange}
         value={!value || value === "0" ? "" : value}

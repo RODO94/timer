@@ -26,7 +26,7 @@ export default function TimeDisplay({
       role='button'
       aria-label={`Edit ${variant}`}
     >
-      {time || "00"}
+      {time.toString().padStart(2, "0") || "00"}
     </h1>
   ) : (
     <Input

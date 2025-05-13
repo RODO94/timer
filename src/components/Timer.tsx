@@ -13,13 +13,13 @@ export default function Timer() {
     seconds: 0,
   });
   const [timeElapsed, setTimeElapsed] = useState<number>(0);
-  const [progress, setProgress] = useState(0);
+  const [progress, setProgress] = useState(100);
   const [isRunning, setIsRunning] = useState(false);
 
   const progressGradient = useMemo(() => {
     const yellow = "#fffb00";
     const blue = "#11099c";
-    const convertProgressToDeg = progress * 3.6;
+    const convertProgressToDeg = (100 - progress) * 3.6;
 
     return `conic-gradient(
     ${yellow} 0deg,
@@ -52,7 +52,8 @@ export default function Timer() {
         } else {
           const timeInSeconds = convertTimeToSeconds(newTime);
           const newTimeElapsed = timeElapsed + 1;
-          const newProgress = (newTimeElapsed / timeInSeconds) * 100;
+          const newProgress =
+            (timeInSeconds / (newTimeElapsed + timeInSeconds)) * 100;
           setProgress(newProgress);
           setTimeElapsed(newTimeElapsed);
         }
@@ -77,6 +78,7 @@ export default function Timer() {
     setTimeElapsed(0);
     setProgress(0);
   };
+
   return (
     <section className='flex flex-col items-center gap-2 justify-center w-full h-full'>
       <div
