@@ -1,12 +1,14 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import Actions from "./Actions";
+import ProgressCircle from "./ProgressCircle";
 import Time from "./Time";
 
 export interface TimeStructure {
   minutes: number;
   seconds: number;
 }
+
 export default function Timer() {
   const [time, setTime] = useState<TimeStructure>({
     minutes: 0,
@@ -15,19 +17,6 @@ export default function Timer() {
   const [timeElapsed, setTimeElapsed] = useState<number>(0);
   const [progress, setProgress] = useState(100);
   const [isRunning, setIsRunning] = useState(false);
-
-  const progressGradient = useMemo(() => {
-    const yellow = "#fffb00";
-    const blue = "#11099c";
-    const convertProgressToDeg = (100 - progress) * 3.6;
-
-    return `conic-gradient(
-    ${yellow} 0deg,
-    ${yellow} ${convertProgressToDeg}deg,
-    ${blue} ${convertProgressToDeg}deg,
-    ${blue} 360deg
-  )`;
-  }, [progress]);
 
   const convertTimeToSeconds = useCallback((time: TimeStructure) => {
     return time.minutes * 60 + time.seconds;
@@ -81,26 +70,15 @@ export default function Timer() {
 
   return (
     <section className='flex flex-col items-center gap-2 justify-center w-full h-full'>
-      <div
-        id='progress-outer-bar'
-        className='w-[75vmin] h-[75vmin] flex flex-col items-center justify-center rounded-full'
-        style={{
-          background: `${progressGradient}`,
-        }}
-      >
-        <div
-          id='progress-inner-bar'
-          className='w-[70vmin] h-[70vmin] bg-[#11099c] flex flex-col items-center justify-center gap-3 rounded-full'
-        >
-          <Time time={time} setTime={setTime} />
-          <Actions
-            isRunning={isRunning}
-            onStart={handleStart}
-            onStop={handleStop}
-            onReset={handleReset}
-          />
-        </div>
-      </div>
+      <ProgressCircle progress={progress}>
+        <Time time={time} setTime={setTime} />
+        <Actions
+          isRunning={isRunning}
+          onStart={handleStart}
+          onStop={handleStop}
+          onReset={handleReset}
+        />
+      </ProgressCircle>
     </section>
   );
 }
