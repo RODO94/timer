@@ -1,33 +1,86 @@
-import { useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 import Button from "./shared/Button";
 import Time from "./Time";
 
-import type { TimeFormat } from "../types/time";
-
+export interface TimeStructure {
+  minutes: number;
+  seconds: number;
+}
 export default function Timer() {
-  /**
-   * This component is a placeholder for the timer component
-   * This component will be the parent to the time component and the action buttons
-   * It will handle the styling of the visual time indicator and the state of the timer
-   * This indicator will be a circular progress bar that will fill up as the time progresses
-   */
+  const [time, setTime] = useState<TimeStructure>({
+    minutes: 30,
+    seconds: 30,
+  });
+  const [timeElapsed, setTimeElapsed] = useState<number>(0);
+  const [progress, setProgress] = useState(0);
+  const [isRunning, setIsRunning] = useState(true);
 
-  const [time, setTime] = useState<TimeFormat>("00:00");
-  const [isRunning, setIsRunning] = useState(false);
+  const progressGradient = useMemo(() => {
+    const yellow = "#fffb00";
+    const blue = "#11099c";
+    const convertProgressToDeg = progress * 3.6;
+
+    return `conic-gradient(
+    ${yellow} 0deg,
+    ${yellow} ${convertProgressToDeg}deg,
+    ${blue} ${convertProgressToDeg}deg,
+    ${blue} 360deg
+  )`;
+  }, [progress]);
+
+  const convertTimeToSeconds = useCallback((time: TimeStructure) => {
+    return time.minutes * 60 + time.seconds;
+  }, []);
+
+  useEffect(() => {
+    let intervalId: number;
+    if (isRunning) {
+      intervalId = setInterval(() => {
+        setTimeElapsed(timeElapsed + 1);
+        let newTime = time;
+        if (time.seconds - 1 < 0 && time.minutes > 0)
+          newTime = { minutes: time.minutes - 1, seconds: 59 };
+
+        if (time.seconds - 1 >= 0)
+          newTime = { ...time, seconds: time.seconds - 1 };
+
+        if (time.seconds - 1 === 0 && time.minutes === 0) {
+          newTime = { minutes: 0, seconds: 0 };
+          setIsRunning(false);
+          setTimeElapsed(0);
+          setProgress(100);
+        }
+
+        const timeInSeconds = convertTimeToSeconds(newTime);
+        const newProgress = (timeElapsed / timeInSeconds) * 100;
+        setProgress(newProgress);
+        setTime(newTime);
+      }, 1000);
+    }
+    return () => clearInterval(intervalId);
+  }, [convertTimeToSeconds, isRunning, time, timeElapsed]);
 
   return (
-    <div className='flex flex-col items-center justify-center w-full h-full'>
+    <section className='flex flex-col items-center justify-center w-full h-full'>
       <div
-        id='progress-bar'
-        className='w-[75vmin] h-[75vmin] flex flex-col items-center justify-center border-8 border-solid border-black rounded-full'
+        id='progress-outer-bar'
+        className='w-[75vmin] h-[75vmin] flex flex-col items-center justify-center rounded-full'
+        style={{
+          background: `${progressGradient}`,
+        }}
       >
-        <Time time={time} />
-        <div className='flex gap-4 mt-4'>
-          <Button action={isRunning ? "stop" : "start"} variant='primary' />
-          <Button action='reset' variant='secondary' />
+        <div
+          id='progress-inner-bar'
+          className='w-[70vmin] h-[70vmin] bg-[#11099c] flex flex-col items-center justify-center rounded-full'
+        >
+          <Time time={time} />
+          <div className='flex gap-4 mt-4'>
+            <Button action={isRunning ? "stop" : "start"} variant='primary' />
+            <Button action='reset' variant='secondary' />
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
