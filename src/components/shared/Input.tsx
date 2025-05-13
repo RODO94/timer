@@ -22,7 +22,7 @@ export default function Input({
         pattern='[0-9]{1,2}'
         aria-live='polite'
         aria-label={`${name} input`}
-        className='outline-none w-full text-5xl border-none bg-transparent'
+        className='outline-none w-full text-9xl border-none bg-transparent'
       />
     </div>
   );

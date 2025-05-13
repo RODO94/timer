@@ -33,7 +33,8 @@ export default function Time({
         return;
       }
     } else if (variant === "minutes") {
-      if (Number(inputValue) > 999) { // Adjust the upper limit as needed
+      if (Number(inputValue) > 999) {
+        // Adjust the upper limit as needed
         setErrorMessage("Minutes must be less than or equal to 999");
         return;
       }
@@ -64,7 +65,7 @@ export default function Time({
           handleTimeChange={handleTimeChange}
           variant='minutes'
         />{" "}
-        <h1>:</h1>
+        <h1 className='text-8xl'>:</h1>
         <TimeDisplay
           time={time.seconds}
           handleTimeChange={handleTimeChange}

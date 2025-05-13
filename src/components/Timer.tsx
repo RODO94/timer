@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 
-import Button from "./shared/Button";
+import Actions from "./Actions";
 import Time from "./Time";
 
 export interface TimeStructure {
@@ -63,8 +63,22 @@ export default function Timer() {
     return () => clearInterval(intervalId);
   }, [convertTimeToSeconds, isRunning, time, timeElapsed]);
 
+  const handleStart = () => {
+    setIsRunning(true);
+  };
+
+  const handleStop = () => {
+    setIsRunning(false);
+  };
+
+  const handleReset = () => {
+    setIsRunning(false);
+    setTime({ minutes: 0, seconds: 0 });
+    setTimeElapsed(0);
+    setProgress(0);
+  };
   return (
-    <section className='flex flex-col items-center justify-center w-full h-full'>
+    <section className='flex flex-col items-center gap-2 justify-center w-full h-full'>
       <div
         id='progress-outer-bar'
         className='w-[75vmin] h-[75vmin] flex flex-col items-center justify-center rounded-full'
@@ -74,13 +88,15 @@ export default function Timer() {
       >
         <div
           id='progress-inner-bar'
-          className='w-[70vmin] h-[70vmin] bg-[#11099c] flex flex-col items-center justify-center rounded-full'
+          className='w-[70vmin] h-[70vmin] bg-[#11099c] flex flex-col items-center justify-center gap-3 rounded-full'
         >
           <Time time={time} setTime={setTime} />
-          <div className='flex gap-4 mt-4'>
-            <Button action={isRunning ? "stop" : "start"} variant='primary' />
-            <Button action='reset' variant='secondary' />
-          </div>
+          <Actions
+            isRunning={isRunning}
+            onStart={handleStart}
+            onStop={handleStop}
+            onReset={handleReset}
+          />
         </div>
       </div>
     </section>
