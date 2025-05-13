@@ -1,8 +1,10 @@
 import { useCallback, useEffect, useState } from "react";
+import Lottie from "react-lottie";
 
 import { Actions } from "./Actions";
 import ProgressCircle from "./ProgressCircle";
 import Time from "./Time";
+import bellAnimation from "../assets/bell-animation.json";
 
 export interface TimeStructure {
   minutes: number;
@@ -17,6 +19,7 @@ export default function Timer() {
   const [timeElapsed, setTimeElapsed] = useState<number>(0);
   const [progress, setProgress] = useState(100);
   const [isRunning, setIsRunning] = useState(false);
+  const [hasTimerFinished, setHasTimerFinished] = useState(false);
 
   const convertTimeToSeconds = useCallback((time: TimeStructure) => {
     return time.minutes * 60 + time.seconds;
@@ -36,6 +39,7 @@ export default function Timer() {
         if (seconds - 1 === 0 && minutes === 0) {
           newTime = { minutes: 0, seconds: 0 };
           setIsRunning(false);
+          setHasTimerFinished(true);
           setTimeElapsed(0);
           setProgress(100);
         } else {
@@ -68,8 +72,30 @@ export default function Timer() {
     setProgress(0);
   }, []);
 
+  if (hasTimerFinished) {
+    setTimeout(() => {
+      setHasTimerFinished(false);
+    }, 10000);
+  }
+
   return (
     <section className='flex flex-col items-center gap-2 justify-center w-full h-full'>
+      {hasTimerFinished && (
+        <div className='absolute top-2'>
+          <Lottie
+            options={{
+              loop: true,
+              autoplay: true,
+              animationData: bellAnimation,
+              rendererSettings: {
+                preserveAspectRatio: "xMidYMid slice",
+              },
+            }}
+            height={300}
+            width={300}
+          />
+        </div>
+      )}
       <ProgressCircle progress={progress}>
         <Time time={time} setTime={setTime} />
         <Actions
