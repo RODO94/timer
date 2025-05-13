@@ -13,13 +13,13 @@
 
   margin: 0 auto;
   text-align: center;
+  background-color: #11099c;
 }
 
 body {
   margin: 0;
   display: flex;
   place-items: center;
-  background-color: #11099c;
   color: #fffb00;
   font-family: "Ubuntu", system-ui, -apple-system, BlinkMacSystemFont,
     "Segoe UI", Roboto, Oxygen, Cantarell, "Open Sans", "Helvetica Neue",
