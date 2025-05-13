@@ -37,24 +37,26 @@ export default function Timer() {
     let intervalId: number;
     if (isRunning) {
       intervalId = setInterval(() => {
-        setTimeElapsed(timeElapsed + 1);
         let newTime = time;
-        if (time.seconds - 1 < 0 && time.minutes > 0)
-          newTime = { minutes: time.minutes - 1, seconds: 59 };
+        const { seconds, minutes } = time;
+        if (seconds - 1 < 0 && minutes > 0)
+          newTime = { minutes: minutes - 1, seconds: 59 };
 
-        if (time.seconds - 1 >= 0)
-          newTime = { ...time, seconds: time.seconds - 1 };
+        if (seconds - 1 >= 0) newTime = { ...time, seconds: seconds - 1 };
 
-        if (time.seconds - 1 === 0 && time.minutes === 0) {
+        if (seconds - 1 === 0 && minutes === 0) {
           newTime = { minutes: 0, seconds: 0 };
           setIsRunning(false);
           setTimeElapsed(0);
           setProgress(100);
+        } else {
+          const timeInSeconds = convertTimeToSeconds(newTime);
+          const newTimeElapsed = timeElapsed + 1;
+          const newProgress = (newTimeElapsed / timeInSeconds) * 100;
+          setProgress(newProgress);
+          setTimeElapsed(newTimeElapsed);
         }
 
-        const timeInSeconds = convertTimeToSeconds(newTime);
-        const newProgress = (timeElapsed / timeInSeconds) * 100;
-        setProgress(newProgress);
         setTime(newTime);
       }, 1000);
     }
