@@ -11,9 +11,11 @@
     "lint:fix": "eslint src --ext ts,tsx --fix"
   },
   "dependencies": {
+    "@lottiefiles/dotlottie-web": "^0.44.0",
     "@tailwindcss/vite": "^4.1.6",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-lottie": "^1.2.10",
     "tailwindcss": "^4.1.6"
   },
   "devDependencies": {
