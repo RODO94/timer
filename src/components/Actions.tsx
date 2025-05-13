@@ -1,12 +1,35 @@
-export default function Actions() {
-  /**
-   * Within this component we will have actions buttons:
-   * - Start/Stop
-   * - Reset
-   * It will handle the state of the buttons
-   * It will receive a prop from the Timer component to handle the state of the timer
-   * It will use the shared Button component and pass in a variant prop to handle the styling of the buttons
-   * The start/stop button will have a different icon depending on the state of the timer
-   */
+import Button from "./shared/Button";
+
+interface ActionsProps {
+  isRunning: boolean;
+  onStart: () => void;
+  onStop: () => void;
+  onReset: () => void;
+}
+
+export default function Actions({
+  isRunning,
+  onStart,
+  onStop,
+  onReset,
+}: ActionsProps) {
+  const handleStartStop = () => {
+    if (isRunning) {
+      onStop();
+    } else {
+      onStart();
+    }
+  };
+
+  return (
+    <div className='flex justify-center gap-24 mt-4 w-full'>
+      <Button action='reset' variant='secondary' onClick={onReset} />
+      <Button
+        action={isRunning ? "stop" : "start"}
+        variant='primary'
+        onClick={handleStartStop}
+      />
+    </div>
+  );
   return <></>;
 }
