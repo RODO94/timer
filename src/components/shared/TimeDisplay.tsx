@@ -23,6 +23,7 @@ export default function TimeDisplay({
         setCanEdit(true);
       }}
       className='text-4xl cursor-pointer md:text-9xl'
+      data-testid={`${variant}-header`}
       role='button'
       aria-label={`Edit ${variant}`}
     >
@@ -31,6 +32,7 @@ export default function TimeDisplay({
   ) : (
     <Input
       name={variant}
+      data-testid={`${variant}-input`}
       value={`${time}` || ""}
       handleChange={(e) => {
         handleTimeChange(e, variant);

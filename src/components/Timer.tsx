@@ -26,7 +26,7 @@ export default function Timer() {
   }, []);
 
   useEffect(() => {
-    let intervalId: number;
+    let intervalId: NodeJS.Timeout;
     if (isRunning) {
       intervalId = setInterval(() => {
         let newTime = time;

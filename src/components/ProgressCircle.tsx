@@ -24,6 +24,7 @@ export default function ProgressCircle({
   return (
     <div
       id='progress-outer-bar'
+      data-testid='progress-outer-bar'
       className='w-[75vmin] h-[75vmin] flex flex-col items-center justify-center rounded-full'
       style={{
         background: progressGradient,
@@ -31,6 +32,7 @@ export default function ProgressCircle({
     >
       <div
         id='progress-inner-bar'
+        data-testid='progress-inner-bar'
         className='w-[70vmin] h-[70vmin] bg-[#11099c] flex flex-col items-center justify-center gap-3 rounded-full'
       >
         {children}

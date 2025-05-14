@@ -21,6 +21,7 @@ function ButtonComponent({
     <button
       className={variant === "primary" ? primaryStyles : secondaryStyles}
       onClick={onClick}
+      data-testid={`${action}-button`}
     >
       {action === "start" && "Start"}
       {action === "stop" && "Stop"}
