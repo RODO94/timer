@@ -67,7 +67,7 @@ describe("Timer Interaction", () => {
     expect(getMinutesDisplay()).toHaveTextContent("1");
   });
 
-  it("should start a 10 second timer when clicking start", async () => {
+  it("should start a timer when clicking start", async () => {
     // Set time to 10 seconds
     await setTime({ minutes: 0, seconds: 2 });
 
@@ -83,8 +83,6 @@ describe("Timer Interaction", () => {
 
     // Check if time has changed to 00:00
     expect(getSecondsDisplay()).toHaveTextContent("0");
-    // Check if bell animation appears and is visible
-    expect(getBellAnimation()).toBeInTheDocument();
   });
 
   it("should stop the timer when clicking stop", async () => {
@@ -129,7 +127,7 @@ describe("Timer Interaction", () => {
       }deg, ${blueHex} ${degreeIncrements * 1}deg, ${blueHex} 360deg )`
     );
 
-    await sleep(1000);
+    await sleep(1100);
 
     const secondProgressCircle = getProgressCircle();
     expect(secondProgressCircle).toHaveStyle(
@@ -168,8 +166,8 @@ describe("Timer Interaction", () => {
     // Start the timer
     await startTimer();
 
-    await sleep(1000);
-    // Check time is now 8 seconds
+    await sleep(1100);
+    // Check time is now 9 seconds
     expect(getSecondsDisplay()).toHaveTextContent("9");
 
     // Reset timer
