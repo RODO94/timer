@@ -9,7 +9,7 @@
     "preview": "vite preview",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "eslint src --ext ts,tsx --fix",
-    "test": "vitest --coverage"
+    "test": "vitest"
   },
   "dependencies": {
     "@lottiefiles/dotlottie-web": "^0.44.0",
