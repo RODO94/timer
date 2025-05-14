@@ -32,7 +32,6 @@ export default function TimeDisplay({
   ) : (
     <Input
       name={variant}
-      data-testid={`${variant}-input`}
       value={`${time}` || ""}
       handleChange={(e) => {
         handleTimeChange(e, variant);

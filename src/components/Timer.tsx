@@ -93,6 +93,7 @@ export default function Timer() {
             }}
             height={300}
             width={300}
+            data-testid='bell-animation'
           />
         </div>
       )}
