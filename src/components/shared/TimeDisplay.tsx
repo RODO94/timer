@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { TimeVariants } from "../Time";
+import { type TimeVariants } from "../Time";
 import Input from "./Input";
 
 export default function TimeDisplay({

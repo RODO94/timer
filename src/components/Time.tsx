@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import TimeDisplay from "./shared/TimeDisplay";
-import { TimeStructure } from "./Timer";
+import { type TimeStructure } from "./Timer";
 
 export type TimeVariants = "seconds" | "minutes";
 

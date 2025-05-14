@@ -1,7 +1,7 @@
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import { TimeStructure } from "../components/Timer";
+import { type TimeStructure } from "../components/Timer";
 
 // Setup user events
 export const user = userEvent.setup();
