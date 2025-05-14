@@ -12,7 +12,7 @@ export default function ProgressCircle({
   // Calculate gradient for progress visualization
   const yellow = "#fffb00";
   const blue = "#11099c";
-  const convertProgressToDeg = (100 - progress) * 3.6;
+  const convertProgressToDeg = Math.floor((100 - progress) * 3.6);
 
   const progressGradient = `conic-gradient(
     ${yellow} 0deg,
@@ -24,6 +24,7 @@ export default function ProgressCircle({
   return (
     <div
       id='progress-outer-bar'
+      data-testid='progress-outer-bar'
       className='w-[75vmin] h-[75vmin] flex flex-col items-center justify-center rounded-full'
       style={{
         background: progressGradient,
@@ -31,6 +32,7 @@ export default function ProgressCircle({
     >
       <div
         id='progress-inner-bar'
+        data-testid='progress-inner-bar'
         className='w-[70vmin] h-[70vmin] bg-[#11099c] flex flex-col items-center justify-center gap-3 rounded-full'
       >
         {children}

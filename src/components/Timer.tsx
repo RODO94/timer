@@ -26,7 +26,7 @@ export default function Timer() {
   }, []);
 
   useEffect(() => {
-    let intervalId: number;
+    let intervalId: NodeJS.Timeout;
     if (isRunning) {
       intervalId = setInterval(() => {
         let newTime = time;
@@ -69,7 +69,7 @@ export default function Timer() {
     setIsRunning(false);
     setTime({ minutes: 0, seconds: 0 });
     setTimeElapsed(0);
-    setProgress(0);
+    setProgress(100);
   }, []);
 
   if (hasTimerFinished) {
@@ -93,6 +93,7 @@ export default function Timer() {
             }}
             height={300}
             width={300}
+            data-testid='bell-animation'
           />
         </div>
       )}

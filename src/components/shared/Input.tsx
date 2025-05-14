@@ -14,6 +14,7 @@ export default function Input({
       <input
         id={name}
         name={name}
+        data-testid={`${name}-input`}
         autoFocus
         type='text'
         onChange={handleChange}
