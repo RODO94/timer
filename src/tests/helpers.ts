@@ -14,8 +14,7 @@ export const getSecondsInput = () => screen.getByTestId("seconds-input");
 export const getStartButton = () => screen.getByTestId("start-button");
 export const getStopButton = () => screen.getByTestId("stop-button");
 export const getResetButton = () => screen.getByTestId("reset-button");
-export const getBellAnimation = () =>
-  screen.queryByRole("img", { name: /bell/i });
+export const getBellAnimation = () => screen.getByLabelText("animation");
 export const getProgressCircle = () => screen.getByTestId("progress-outer-bar");
 
 // Get elements from display (when not in edit mode)

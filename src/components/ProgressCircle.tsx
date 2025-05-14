@@ -12,7 +12,7 @@ export default function ProgressCircle({
   // Calculate gradient for progress visualization
   const yellow = "#fffb00";
   const blue = "#11099c";
-  const convertProgressToDeg = (100 - progress) * 3.6;
+  const convertProgressToDeg = Math.floor((100 - progress) * 3.6);
 
   const progressGradient = `conic-gradient(
     ${yellow} 0deg,

@@ -69,7 +69,7 @@ export default function Timer() {
     setIsRunning(false);
     setTime({ minutes: 0, seconds: 0 });
     setTimeElapsed(0);
-    setProgress(0);
+    setProgress(100);
   }, []);
 
   if (hasTimerFinished) {
