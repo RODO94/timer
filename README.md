@@ -6,7 +6,7 @@ The app itself is quite simple, scaffolded with Vite and it uses React and Types
 
 When everything goes well, you should be met by a screen like this:
 
-![timer user interface](image.png)
+![timer user interface](src/assets/ui.png)
 
 The site is live here: [timer.rorydoak](https://timer.rorydoak.com/)
 
