@@ -1,54 +1,51 @@
-# React + TypeScript + Vite
+# Timer Application by Rory Doak
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Built a simple timer app to practice vibe coding, understanding the merits and best use-cases for AI assisted coding.
 
-Currently, two official plugins are available:
+The app itself is quite simple, scaffolded with Vite and it uses React and Typescript. I've built the testing on vitest.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+When everything goes well, you should be met by a screen like this:
 
-## Expanding the ESLint configuration
+![timer user interface](image.png)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+The site is live here: [timer.rorydoak](https://timer.rorydoak.com/)
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## Getting started
+
+To get up and running you'll need `pnpm`, which you can install with npm:
+
+```
+npm install -g pnpm
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+From here you just need to install the relevant dependences:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```
+pnpm i
+```
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+And start up the local environment
+
+```
+pnpm run dev
+```
+
+## Testing code
+
+To run all of the tests:
+
+```bash
+pnpm test
+```
+
+To run only the UI tests:
+
+```bash
+pnpm test:ui
+```
+
+To run only the interaction tests:
+
+```bash
+pnpm test:interactions
 ```
